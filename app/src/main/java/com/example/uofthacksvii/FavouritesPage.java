@@ -54,7 +54,7 @@ public class FavouritesPage extends AppCompatActivity {
                 switch(id)
                 {
                     case R.id.Home:
-                        Intent intent = new Intent(FavouritesPage.this, RecipeSearch.class);
+                        Intent intent = new Intent(FavouritesPage.this, MainActivity.class);
                         startActivity(intent);
                     case R.id.SignIn:
                         Intent intent1 = new Intent(FavouritesPage.this, RecommendedPage.class);

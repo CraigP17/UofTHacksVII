@@ -38,7 +38,7 @@ public class RecommendedPage extends AppCompatActivity {
                 switch(id)
                 {
                     case R.id.Home:
-                        Intent intent = new Intent(RecommendedPage.this, RecipeSearch.class);
+                        Intent intent = new Intent(RecommendedPage.this, MainActivity.class);
                         startActivity(intent);
                     case R.id.SignIn:
                         Intent intent1 = new Intent(RecommendedPage.this, RecommendedPage.class);
