@@ -135,6 +135,8 @@ public class Recipe {
         this.meal_type = meal_type;
     }
 
+
+
     public Recipe(String[] recipe) throws MalformedURLException{
         this.name = recipe[0];
         this.time = Integer.parseInt(recipe[1]);
