@@ -91,8 +91,15 @@ public class RecommendedPage extends AppCompatActivity {
 
     public void addEntry(String[] entries) {
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.scrollWindow);
-        for(int i = 0; i < entries.length; i++) {
+        linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent recipeIntent = new Intent(RecommendedPage.this, RecipeActivity.class);
+                startActivity(recipeIntent);
+            }
+        });
 
+        for(int i = 0; i < entries.length; i++) {
             View entry = getLayoutInflater().inflate(R.layout.entry, null);
             TextView textView = (TextView) entry.findViewById(R.id.textView4);
             textView.setText(entries[i]);
