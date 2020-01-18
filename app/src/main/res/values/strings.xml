@@ -1,15 +1,15 @@
 <resources>
-    <string name="app_name">UofTHacksVII</string>
-    <string name="TimeDay">Time of Day:</string>
+    <string name="app_name">RecipeReady</string>
+    <string name="TimeDay">And I want to have</string>
     <string name="lunch">Lunch</string>
     <string name="breakfast">Breakfast</string>
     <string name="dinner">Dinner</string>
-    <string name="timeCook">Time to Cook:</string>
+    <string name="timeCook">I only have</string>
     <string name="zero">0</string>
     <string name="maxMin">120</string>
     <string name="timeValue">60</string>
-    <string name="searchFilter">Filter by Specific Foods</string>
-    <string name="findRecipe">Find Recipes</string>
+    <string name="searchFilter">I\'m craving</string>
+    <string name="findRecipe">Find me Recipes!</string>
     <string name="mins"> mins</string>
     <string name="Open">NavBar</string>
     <string name="Close">NavBar</string>

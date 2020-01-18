@@ -4,15 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.SeekBar;
-import android.widget.Spinner;
-import android.widget.TextView;
-
-import static android.graphics.Color.DKGRAY;
-import static android.graphics.Color.LTGRAY;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -36,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                new TimedRecipeFragment()).commit();
 
 
         dl = (DrawerLayout)findViewById(R.id.activity_main);
@@ -69,6 +63,11 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent3 = new Intent(MainActivity.this, FavouritesPage.class);
                         startActivity(intent3);
                         break;
+                    case R.id.Shopping:
+                        Intent intent4 = new Intent(MainActivity.this, ShoppingPage.class);
+                        startActivity(intent4);
+                        break;
+
 
                     default:
                         return true;

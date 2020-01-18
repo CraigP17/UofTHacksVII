@@ -23,7 +23,7 @@ import static android.graphics.Color.LTGRAY;
 public class TimedRecipeFragment extends Fragment {
 
     /** The spinner menu items. */
-    public final static String NO_CHOICE = "Any";
+    public final static String NO_CHOICE = "ANYTHING";
     public final static String THAI = "Thai";
     public final static String ITALIAN = "Italian";
     public final static String AMERICAN = "American";
@@ -84,9 +84,9 @@ public class TimedRecipeFragment extends Fragment {
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity().getBaseContext(), MainActivity.class);
-                intent.putExtra( "time",dayTime);
-                intent.putExtra("time", slider.getText());
+                Intent intent = new Intent(getActivity().getBaseContext(), ResultsPage.class);
+                intent.putExtra( "dayTime",dayTime);
+                intent.putExtra("minutes", slider.getText());
                 intent.putExtra("choice", type);
                 startActivity(intent);
             }
@@ -103,6 +103,8 @@ public class TimedRecipeFragment extends Fragment {
 
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 progressChangedValue = progress;
+                type = String.valueOf(progressChangedValue);
+                slider.setText(type);
             }
 
             public void onStartTrackingTouch(SeekBar seekBar) {

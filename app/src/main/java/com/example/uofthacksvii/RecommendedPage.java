@@ -80,6 +80,10 @@ public class RecommendedPage extends AppCompatActivity {
                         Intent intent3 = new Intent(RecommendedPage.this, FavouritesPage.class);
                         startActivity(intent3);
                         break;
+                    case R.id.Shopping:
+                        Intent intent4 = new Intent(RecommendedPage.this, ShoppingPage.class);
+                        startActivity(intent4);
+                        break;
 
                     default:
                         return true;
