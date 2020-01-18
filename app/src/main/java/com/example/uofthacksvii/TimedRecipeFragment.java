@@ -84,9 +84,9 @@ public class TimedRecipeFragment extends Fragment {
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity().getBaseContext(), MainActivity.class);
-                intent.putExtra( "time",dayTime);
-                intent.putExtra("time", slider.getText());
+                Intent intent = new Intent(getActivity().getBaseContext(), ResultsPage.class);
+                intent.putExtra( "dayTime",dayTime);
+                intent.putExtra("minutes", slider.getText());
                 intent.putExtra("choice", type);
                 startActivity(intent);
             }
