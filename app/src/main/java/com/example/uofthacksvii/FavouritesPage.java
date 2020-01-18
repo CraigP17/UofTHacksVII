@@ -3,6 +3,7 @@ package com.example.uofthacksvii;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -13,17 +14,29 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 public class FavouritesPage extends AppCompatActivity {
 
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
     private NavigationView nv;
+    private Button addFavButton;
+    private TextView t1;
+    private TextView t2;
+    private TextView t3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favourites_page);
+
+        addListenerOnButton();
+        t1 = (TextView) findViewById(R.id.textView);
+        t2 = (TextView) findViewById(R.id.textView);
+        t3 = (TextView) findViewById(R.id.textView);
 
         dl = (DrawerLayout)findViewById(R.id.activity_favourites_page);
         t = new ActionBarDrawerToggle(this, dl,R.string.Open, R.string.Close);
@@ -67,6 +80,17 @@ public class FavouritesPage extends AppCompatActivity {
         });
 
 
+    }
+
+    public void addListenerOnButton() {
+        addFavButton = (Button) findViewById(R.id.button);
+        addFavButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(FavouritesPage.this, RecipeSearch.class);
+                FavouritesPage.this.startActivity(myIntent);
+            }
+        });
     }
 
     @Override
