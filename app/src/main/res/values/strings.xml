@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">UofTHacksVII</string>
+    <string name="Open">NavBar</string>
+    <string name="Close">NavBar</string>
+    <string name="RecipeSearch">Search Recipe</string>
+    <string name="Recommended">Recommended</string>
+    <string name="Nutrition">Nutrition</string>
+    <string name="Favourites">Favourities</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.example.uofthacksvii;
 
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -12,7 +13,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity {
+import android.os.Bundle;
+
+public class NutritionPage extends AppCompatActivity {
 
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
@@ -21,9 +24,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_nutrition_page);
 
-        dl = (DrawerLayout)findViewById(R.id.activity_main);
+        dl = (DrawerLayout)findViewById(R.id.activity_nutrition_page);
         t = new ActionBarDrawerToggle(this, dl,R.string.Open, R.string.Close);
 
         dl.addDrawerListener(t);
@@ -39,18 +42,18 @@ public class MainActivity extends AppCompatActivity {
                 switch(id)
                 {
                     case R.id.Home:
-                        Intent intent = new Intent(MainActivity.this, RecipeSearch.class);
+                        Intent intent = new Intent(NutritionPage.this, RecipeSearch.class);
                         startActivity(intent);
                     case R.id.SignIn:
-                        Intent intent1 = new Intent(MainActivity.this, RecommendedPage.class);
+                        Intent intent1 = new Intent(NutritionPage.this, RecommendedPage.class);
                         startActivity(intent1);
                         break;
                     case R.id.QRcode:
-                        Intent intent2 = new Intent(MainActivity.this, NutritionPage.class);
+                        Intent intent2 = new Intent(NutritionPage.this, NutritionPage.class);
                         startActivity(intent2);
                         break;
                     case R.id.Search:
-                        Intent intent3 = new Intent(MainActivity.this, FavouritesPage.class);
+                        Intent intent3 = new Intent(NutritionPage.this, FavouritesPage.class);
                         startActivity(intent3);
                         break;
 
