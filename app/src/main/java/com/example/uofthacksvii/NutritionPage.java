@@ -44,6 +44,7 @@ public class NutritionPage extends AppCompatActivity {
                     case R.id.Home:
                         Intent intent = new Intent(NutritionPage.this, MainActivity.class);
                         startActivity(intent);
+                        break;
                     case R.id.SignIn:
                         Intent intent1 = new Intent(NutritionPage.this, RecommendedPage.class);
                         startActivity(intent1);

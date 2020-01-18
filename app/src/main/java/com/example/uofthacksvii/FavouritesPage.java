@@ -52,6 +52,7 @@ public class FavouritesPage extends AppCompatActivity {
                     case R.id.Home:
                         Intent intent = new Intent(FavouritesPage.this, MainActivity.class);
                         startActivity(intent);
+                        break;
                     case R.id.SignIn:
                         Intent intent1 = new Intent(FavouritesPage.this, RecommendedPage.class);
                         startActivity(intent1);

@@ -51,6 +51,7 @@ public class RecommendedPage extends AppCompatActivity {
                     case R.id.Home:
                         Intent intent = new Intent(RecommendedPage.this, MainActivity.class);
                         startActivity(intent);
+                        break;
                     case R.id.SignIn:
                         Intent intent1 = new Intent(RecommendedPage.this, RecommendedPage.class);
                         startActivity(intent1);
