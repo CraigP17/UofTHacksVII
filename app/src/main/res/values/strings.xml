@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">UofTHacksVII</string>
+    <string name="TimeDay">Time of Day:</string>
+    <string name="lunch">Lunch</string>
+    <string name="breakfast">Breakfast</string>
+    <string name="dinner">Dinner</string>
+    <string name="timeCook">Time to Cook:</string>
+    <string name="zero">0</string>
+    <string name="maxMin">120</string>
+    <string name="timeValue">60</string>
+    <string name="searchFilter">Filter by Specific Foods</string>
+    <string name="findRecipe">Find Recipes</string>
+    <string name="mins"> mins</string>
 </resources>
