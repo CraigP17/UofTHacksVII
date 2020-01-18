@@ -18,6 +18,8 @@ import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 
+import org.w3c.dom.Text;
+
 public class RecommendedPage extends AppCompatActivity {
 
     private DrawerLayout dl;
@@ -92,6 +94,8 @@ public class RecommendedPage extends AppCompatActivity {
         for(int i = 0; i < entries.length; i++) {
 
             View entry = getLayoutInflater().inflate(R.layout.entry, null);
+            TextView textView = (TextView) entry.findViewById(R.id.textView4);
+            textView.setText(entries[i]);
             linearLayout.addView(entry);
         }
     }
