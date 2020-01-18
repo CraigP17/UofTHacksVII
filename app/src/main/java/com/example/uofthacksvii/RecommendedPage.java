@@ -5,14 +5,10 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -89,9 +85,18 @@ public class RecommendedPage extends AppCompatActivity {
 
     public void addEntry(String[] entries) {
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.scrollWindow);
-        for(int i = 0; i < entries.length; i++) {
+        linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent recipeIntent = new Intent(RecommendedPage.this, RecipeActivity.class);
+                startActivity(recipeIntent);
+            }
+        });
 
+        for(int i = 0; i < entries.length; i++) {
             View entry = getLayoutInflater().inflate(R.layout.entry, null);
+            TextView textView = (TextView) entry.findViewById(R.id.textView4);
+            textView.setText(entries[i]);
             linearLayout.addView(entry);
         }
     }
