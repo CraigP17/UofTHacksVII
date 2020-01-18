@@ -63,6 +63,11 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent3 = new Intent(MainActivity.this, FavouritesPage.class);
                         startActivity(intent3);
                         break;
+                    case R.id.Shopping:
+                        Intent intent4 = new Intent(MainActivity.this, ShoppingPage.class);
+                        startActivity(intent4);
+                        break;
+
 
                     default:
                         return true;

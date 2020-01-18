@@ -14,8 +14,16 @@ import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class RecommendedPage extends AppCompatActivity {
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
+public class RecommendedPage extends AppCompatActivity {
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
     private NavigationView nv;
@@ -26,8 +34,20 @@ public class RecommendedPage extends AppCompatActivity {
         setContentView(R.layout.activity_recommended_page);
 
         // Show entries
-        String[] data = {"Spaghetti", "Pizza", "Your Mom"}; //Fake test strings
-        addEntry(data);
+        ArrayList<String[]> resultList = new ArrayList<String[]>();
+        InputStream dataStream = getResources().openRawResource(R.raw.recipe_data);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(dataStream));
+        try {
+            String csvLine;
+            while ((csvLine = reader.readLine()) != null) {
+                String[] row = csvLine.split("\t");
+                resultList.add(row);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //String[] data = {"Spaghetti", "Pizza", "Your Mom"}; //Fake test strings
+        addEntry(resultList);
         // Make Navigation View
         dl = (DrawerLayout)findViewById(R.id.activity_recommended_page);
         t = new ActionBarDrawerToggle(this, dl,R.string.Open, R.string.Close);
@@ -60,6 +80,10 @@ public class RecommendedPage extends AppCompatActivity {
                         Intent intent3 = new Intent(RecommendedPage.this, FavouritesPage.class);
                         startActivity(intent3);
                         break;
+                    case R.id.Shopping:
+                        Intent intent4 = new Intent(RecommendedPage.this, ShoppingPage.class);
+                        startActivity(intent4);
+                        break;
 
                     default:
                         return true;
@@ -83,7 +107,7 @@ public class RecommendedPage extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void addEntry(String[] entries) {
+    public void addEntry(ArrayList<String[]> entries) {
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.scrollWindow);
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,11 +117,14 @@ public class RecommendedPage extends AppCompatActivity {
             }
         });
 
-        for(int i = 0; i < entries.length; i++) {
-            View entry = getLayoutInflater().inflate(R.layout.entry, null);
-            TextView textView = (TextView) entry.findViewById(R.id.textView4);
-            textView.setText(entries[i]);
-            linearLayout.addView(entry);
+        for(int i = 0; i < entries.size(); i++) {
+            if(entries.get(i).length > 0) {
+                View entry = getLayoutInflater().inflate(R.layout.entry, null);
+                TextView textView = (TextView) entry.findViewById(R.id.textView4);
+                textView.setText(entries.get(i)[0]);
+                linearLayout.addView(entry);
+            }
+
         }
     }
 }
