@@ -8,6 +8,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -22,6 +24,10 @@ public class RecommendedPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommended_page);
 
+        // Show entries
+        String[] data = {"Spaghetti", "Pizza", "Your Mom"}; //Fake test strings
+        addEntry(data);
+        // Make Navigation View
         dl = (DrawerLayout)findViewById(R.id.activity_recommended_page);
         t = new ActionBarDrawerToggle(this, dl,R.string.Open, R.string.Close);
 
@@ -73,5 +79,14 @@ public class RecommendedPage extends AppCompatActivity {
             return true;
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void addEntry(String[] entries) {
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.scrollWindow);
+        for(int i = 0; i < entries.length; i++) {
+            TextView textView = new TextView(this);
+            textView.setText(entries[i]);
+            linearLayout.addView(textView);
+        }
     }
 }
