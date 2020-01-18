@@ -6,12 +6,12 @@
         android:icon="@drawable/ic_home_24px"
         android:title="@string/RecipeSearch"/>
     <item android:id="@+id/Recommended"
-        android:icon="@drawable/ic_account_circle_24px"
+        android:icon="@drawable/ic_thumb_up_alt_24px"
         android:title="@string/Recommended"/>
     <item android:id="@+id/Nutrition"
-        android:icon="@drawable/ic_camera_alt_24px"
+        android:icon="@drawable/ic_directions_run_black_24dp"
         android:title="@string/Nutrition"/>
     <item android:id="@+id/Favourites"
-        android:icon="@drawable/ic_search_24px"
+        android:icon="@drawable/ic_stars_24px"
         android:title="@string/Favourites"/>
 </menu>

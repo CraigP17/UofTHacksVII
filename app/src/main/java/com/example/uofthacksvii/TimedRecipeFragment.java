@@ -23,7 +23,7 @@ import static android.graphics.Color.LTGRAY;
 public class TimedRecipeFragment extends Fragment {
 
     /** The spinner menu items. */
-    public final static String NO_CHOICE = "Any";
+    public final static String NO_CHOICE = "ANYTHING";
     public final static String THAI = "Thai";
     public final static String ITALIAN = "Italian";
     public final static String AMERICAN = "American";
@@ -103,6 +103,8 @@ public class TimedRecipeFragment extends Fragment {
 
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 progressChangedValue = progress;
+                type = String.valueOf(progressChangedValue);
+                slider.setText(type);
             }
 
             public void onStartTrackingTouch(SeekBar seekBar) {
