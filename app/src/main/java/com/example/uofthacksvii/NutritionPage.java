@@ -45,15 +45,15 @@ public class NutritionPage extends AppCompatActivity {
                         Intent intent = new Intent(NutritionPage.this, MainActivity.class);
                         startActivity(intent);
                         break;
-                    case R.id.SignIn:
+                    case R.id.Recommended:
                         Intent intent1 = new Intent(NutritionPage.this, RecommendedPage.class);
                         startActivity(intent1);
                         break;
-                    case R.id.QRcode:
+                    case R.id.Nutrition:
                         Intent intent2 = new Intent(NutritionPage.this, NutritionPage.class);
                         startActivity(intent2);
                         break;
-                    case R.id.Search:
+                    case R.id.Favourites:
                         Intent intent3 = new Intent(NutritionPage.this, FavouritesPage.class);
                         startActivity(intent3);
                         break;

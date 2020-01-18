@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import static android.graphics.Color.DKGRAY;
 import static android.graphics.Color.LTGRAY;
@@ -58,15 +57,15 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent(MainActivity.this, MainActivity.class);
                         startActivity(intent);
                         break;
-                    case R.id.SignIn:
+                    case R.id.Recommended:
                         Intent intent1 = new Intent(MainActivity.this, RecommendedPage.class);
                         startActivity(intent1);
                         break;
-                    case R.id.QRcode:
+                    case R.id.Nutrition:
                         Intent intent2 = new Intent(MainActivity.this, NutritionPage.class);
                         startActivity(intent2);
                         break;
-                    case R.id.Search:
+                    case R.id.Favourites:
                         Intent intent3 = new Intent(MainActivity.this, FavouritesPage.class);
                         startActivity(intent3);
                         break;
