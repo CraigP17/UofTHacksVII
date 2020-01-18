@@ -55,8 +55,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="286dp"
-        android:layout_marginEnd="48dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginEnd="52dp"
+        android:background="@android:color/transparent"
         app:srcCompat="@drawable/burger" />
 
     <ImageButton
@@ -70,6 +71,7 @@
         android:layout_marginStart="167dp"
         android:layout_marginEnd="170dp"
         android:layout_marginBottom="240dp"
+        android:background="@android:color/transparent"
         app:srcCompat="@drawable/ic_pasta" />
 
     <TextView
