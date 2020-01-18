@@ -16,6 +16,6 @@
     <string name="RecipeSearch">Search Recipe</string>
     <string name="Recommended">Recommended</string>
     <string name="Nutrition">Nutrition</string>
-    <string name="Favourites">Favourities</string>
+    <string name="Favourites">Favourites</string>
     <string name="quickSearch">Quick Search</string>
 </resources>
