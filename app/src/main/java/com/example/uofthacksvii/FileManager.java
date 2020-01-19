@@ -289,25 +289,28 @@ public class FileManager {
      */
     public void incrementVisits(String recipe){
         try {
-            //name of recipe|isFavourited|visits|time|calories|carbohydrate|fats|proteins|servings
-            String[] multiLine = this.read().split(System.getProperty("line.separator"));
+            //name of recipe|isFavourited|visits|time|calori es|carbohydrate|fats|proteins|servings
+            String line = this.read();
 
-            StringBuilder writeData = new StringBuilder();
+            if(line != null){
+                String[] multiLine = line.split(System.getProperty("line.separator"));
 
-            for (String u : multiLine) {
-                //System.out.println("Found the users(getUsers)");
-                String[] temp = u.split(",");
-                if (temp[0].equals(recipe)) {
-                    temp[2] = String.valueOf(Integer.parseInt(temp[2]) + 1);
+                StringBuilder writeData = new StringBuilder();
+
+                for (String u : multiLine) {
+                    //System.out.println("Found the users(getUsers)");
+                    String[] temp = u.split(",");
+                    if (temp[0].equals(recipe)) {
+                        temp[2] = String.valueOf(Integer.parseInt(temp[2]) + 1);
+                    }
+
+                    writeData.append(getHelp(temp)).append("\n");
+                    //create a user with the information found in the file
+
                 }
-
-                writeData.append(getHelp(temp)).append("\n");
-                //create a user with the information found in the file
-
+                saveFavourites(writeData.toString());
+                System.out.println(writeData);
             }
-            saveFavourites(writeData.toString());
-            System.out.println(writeData);
-
         } catch (ArrayIndexOutOfBoundsException e) {
             //Catch placed in case the file does not exist and needs to be written
             System.out.println("Gotta write the file...Done");
