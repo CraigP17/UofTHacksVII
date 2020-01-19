@@ -65,6 +65,9 @@ public class GeneralRecipeFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 String service = (String) adapterView.getItemAtPosition(i);
+                Intent intent = new Intent(getActivity().getBaseContext(), RecipeActivity.class);
+                intent.putExtra("name", service);
+                startActivity(intent);
 
             }
         });
