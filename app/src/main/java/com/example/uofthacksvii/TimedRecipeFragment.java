@@ -39,7 +39,9 @@ public class TimedRecipeFragment extends Fragment {
     private SeekBar seekBar;
     private String type;
 
-    public String dayTime;
+    private String dayTime;
+    private Spinner spinner;
+    private String cuisineChoice;
 
     /**
      * The list of choices for the menu choices spinner
@@ -66,7 +68,7 @@ public class TimedRecipeFragment extends Fragment {
         lunch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dayTime = "breakfast";
+                dayTime = "lunch";
                 setBtnColour(breakfast, LTGRAY, lunch, DKGRAY, dinner, LTGRAY);
             }
         });
@@ -75,19 +77,27 @@ public class TimedRecipeFragment extends Fragment {
         dinner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dayTime = "breakfast";
+                dayTime = "dinner";
                 setBtnColour(breakfast, LTGRAY, lunch, LTGRAY, dinner, DKGRAY);
             }
         });
+
+        spinner = (Spinner) v.findViewById(R.id.spinner);
+        ArrayAdapter adapter = new ArrayAdapter(getActivity().getBaseContext(), android.R.layout.simple_spinner_item, menuItems);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
 
         submitBtn = v.findViewById(R.id.timeFindRecipe);
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity().getBaseContext(), ResultsPage.class);
+                intent.putExtra("type", "time");
                 intent.putExtra( "dayTime",dayTime);
                 intent.putExtra("minutes", slider.getText());
-                intent.putExtra("choice", type);
+
+                cuisineChoice = spinner.getSelectedItem().toString();
+                intent.putExtra("choice", cuisineChoice);
                 startActivity(intent);
             }
         });
@@ -116,12 +126,6 @@ public class TimedRecipeFragment extends Fragment {
                 slider.setText(type);
             }
         });
-
-
-        Spinner spinner = v.findViewById(R.id.spinner);
-        ArrayAdapter adapter = new ArrayAdapter(getActivity().getBaseContext(), android.R.layout.simple_spinner_item, menuItems);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
 
 
         return v;
