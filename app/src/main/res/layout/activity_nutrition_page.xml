@@ -10,7 +10,286 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/background_light" />
+        android:background="@android:color/background_light">
+
+        <TextView
+            android:id="@+id/header"
+            android:layout_width="184dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="125dp"
+            android:layout_marginTop="53dp"
+            android:layout_marginEnd="102dp"
+            android:text="Nutrition Facts"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="195dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/header"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="29dp"
+            android:text="Calories" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="195dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView17"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="12dp"
+            android:text="Fats" />
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="195dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView18"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="12dp"
+            android:text="Protein" />
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="195dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView19"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="12dp"
+            android:text="Sugar" />
+
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="195dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView22"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="12dp"
+            android:text="Cholesterol" />
+
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="195dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView23"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="13dp"
+            android:text="Fibre" />
+
+        <TextView
+            android:id="@+id/textView25"
+            android:layout_width="195dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView24"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="12dp"
+            android:text="Sodium" />
+
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="195dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView25"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="11dp"
+            android:text="Potassium" />
+
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="195dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView26"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="11dp"
+            android:text="Vitamin A" />
+
+        <TextView
+            android:id="@+id/textView28"
+            android:layout_width="195dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView27"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="12dp"
+            android:text="Vitamin C" />
+
+        <TextView
+            android:id="@+id/textView29"
+            android:layout_width="195dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView28"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="12dp"
+            android:text="Calcium" />
+
+        <TextView
+            android:id="@+id/textView30"
+            android:layout_width="195dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView29"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="12dp"
+            android:text="Iron" />
+
+        <TextView
+            android:id="@+id/textView31"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/header"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="62dp"
+            android:layout_marginTop="29dp"
+            android:layout_marginEnd="35dp"
+            android:layout_toEndOf="@+id/textView17"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/textView32"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView31"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="61dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="37dp"
+            android:layout_toEndOf="@+id/textView17"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/textView33"
+            android:layout_width="82dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView32"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="62dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="33dp"
+            android:layout_toEndOf="@+id/textView17"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/textView34"
+            android:layout_width="79dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView33"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="61dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="36dp"
+            android:layout_toEndOf="@+id/textView22"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/textView35"
+            android:layout_width="78dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView34"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="62dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="36dp"
+            android:layout_toEndOf="@+id/textView23"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/textView36"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView35"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="36dp"
+            android:layout_toEndOf="@+id/textView24"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/textView37"
+            android:layout_width="78dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView38"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="62dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginEnd="36dp"
+            android:layout_toEndOf="@+id/textView26"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/textView39"
+            android:layout_width="78dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView37"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="62dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginEnd="36dp"
+            android:layout_toEndOf="@+id/textView27"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/textView40"
+            android:layout_width="78dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView39"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="62dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="36dp"
+            android:layout_toEndOf="@+id/textView28"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/textView41"
+            android:layout_width="78dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView42"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="62dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginEnd="36dp"
+            android:layout_toEndOf="@+id/textView30"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/textView38"
+            android:layout_width="81dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView36"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="62dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="36dp"
+            android:layout_toEndOf="@+id/textView23"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/textView42"
+            android:layout_width="78dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView40"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="62dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="36dp"
+            android:layout_toEndOf="@+id/textView29"
+            android:text="TextView" />
+
+    </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"
