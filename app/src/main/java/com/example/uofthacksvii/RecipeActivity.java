@@ -73,6 +73,9 @@ public class RecipeActivity extends AppCompatActivity {
             }
         });
 
+        FileManager fm = new FileManager(getApplicationContext());
+
+
         instructions = (TextView) findViewById(R.id.instructions);
         ingredients = (TextView) findViewById(R.id.ingredients);
         title = (TextView) findViewById(R.id.title);
