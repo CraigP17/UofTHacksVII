@@ -43,11 +43,6 @@ public class RecommendedPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommended_page);
 
-        // Show entries
-        /* fm = new FileManager(getApplicationContext());
-        ArrayList<Recipe> resultList = fm.getRecipes();
-        addEntry(resultList);*/
-
         // Make Navigation View
         dl = (DrawerLayout)findViewById(R.id.activity_recommended_page);
         t = new ActionBarDrawerToggle(this, dl,R.string.Open, R.string.Close);
@@ -120,22 +115,4 @@ public class RecommendedPage extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /*public void addEntry(ArrayList<Recipe> entries) {
-        linearLayout = (LinearLayout) findViewById(R.id.scrollWindow);
-
-        for(int i = 0; i < entries.size(); i++) {
-            View entry = getLayoutInflater().inflate(R.layout.entry, null);
-            textView = (TextView) entry.findViewById(R.id.textView4);
-            textView.setText(entries.get(i).getName());
-            textView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent recipeIntent = new Intent(RecommendedPage.this, RecipeActivity.class);
-                    recipeIntent.putExtra("name",textView.getText().toString());
-                    startActivity(recipeIntent);
-                }
-            });
-            linearLayout.addView(entry);
-        }
-    }*/
 }

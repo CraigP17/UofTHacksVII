@@ -98,4 +98,13 @@ public class RecipeActivity extends AppCompatActivity {
         favoriteStar = (RatingBar) findViewById(R.id.ratingBar);
 
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(t.onOptionsItemSelected(item))
+            return true;
+
+        return super.onOptionsItemSelected(item);
+    }
 }
