@@ -40,6 +40,10 @@ public class ResultsPage extends AppCompatActivity {
     private String[] names;
     private String[] times;
     private Integer[] images;
+    private Integer[] imagery = {R.drawable.ic_stars_24px,R.drawable.ic_stars_24px,
+            R.drawable.ic_stars_24px,R.drawable.ic_stars_24px,R.drawable.ic_stars_24px,
+            R.drawable.ic_stars_24px,R.drawable.ic_stars_24px,R.drawable.ic_stars_24px,
+            R.drawable.ic_stars_24px,R.drawable.ic_stars_24px};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +63,7 @@ public class ResultsPage extends AppCompatActivity {
                 cuisineType = intent.getStringExtra("choice");
                 allRecipe = file.searchByTimeAvailable(minutes, allRecipe);
                 if (!cuisineType.equals("ANYTHING")) {
-                    allRecipe = file.searchByCuisine(cuisineType, allRecipe);
+                    allRecipe = file.searchByCuisine(cuisineType.toLowerCase(), allRecipe);
                 }
                 break;
             case "general":
@@ -118,7 +122,7 @@ public class ResultsPage extends AppCompatActivity {
         });
 
         lst = (ListView) findViewById(R.id.resultList);
-        customListview clv = new customListview(this,names,times,images);
+        customListview clv = new customListview(this,names,times,imagery);
         lst.setAdapter(clv);
 
         searched = (TextView) findViewById(R.id.searches);

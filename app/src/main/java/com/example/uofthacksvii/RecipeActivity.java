@@ -99,11 +99,11 @@ public class RecipeActivity extends AppCompatActivity {
         title = (TextView) findViewById(R.id.title);
         title.setText(recipe.getName());
 
-        image = (ImageView) findViewById(R.id.recipeImage);
-        Resources resources = getResources();
-        String imageName = recipe.getImage();
-        final int resourceId = resources.getIdentifier(imageName, "drawable", getPackageName());
-        image.setImageResource(resourceId);
+//        image = (ImageView) findViewById(R.id.recipeImage);
+//        Resources resources = getResources();
+//        String imageName = recipe.getImage();
+//        final int resourceId = resources.getIdentifier(imageName, "drawable", getPackageName());
+//        image.setImageResource(resourceId);
 
         favoriteStar = (RatingBar) findViewById(R.id.ratingBar);
         ArrayList<String> favs = fm.Favourites();
