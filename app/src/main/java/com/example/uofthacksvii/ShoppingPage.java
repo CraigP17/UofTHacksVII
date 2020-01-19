@@ -8,14 +8,20 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.ArrayList;
 
 public class ShoppingPage extends AppCompatActivity {
 
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
     private NavigationView nv;
+
+    private TextView instructions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +73,14 @@ public class ShoppingPage extends AppCompatActivity {
 
             }
         });
+        FileManager f = new FileManager(this);
+
+        ArrayList<Recipe> allrec = f.getRecipes();
+
+       String ingredients =  getIngredients(allrec,(String)f.Favourites().get(0));
+
+        instructions = (TextView) findViewById(R.id.textView3);
+        instructions.setText(ingredients);
 
 
     }
@@ -78,5 +92,22 @@ public class ShoppingPage extends AppCompatActivity {
             return true;
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public String getIngredients(ArrayList<Recipe> all, String name){
+
+        String ing = "";
+
+        for(Recipe r: all){
+            if(r.getName().equals(name)){
+                String[] ingredients= r.getIngredients();
+                for(String s: ingredients){
+                    ing = ing + s + ",";
+                }
+                return ing;
+            }
+
+        }
+        return ing;
     }
 }
