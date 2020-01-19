@@ -20,9 +20,9 @@ public class ShoppingPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nutrition_page);
+        setContentView(R.layout.activity_shopping_page);
 
-        dl = (DrawerLayout)findViewById(R.id.activity_nutrition_page);
+        dl = (DrawerLayout)findViewById(R.id.activity_shopping_page);
         t = new ActionBarDrawerToggle(this, dl,R.string.Open, R.string.Close);
 
         dl.addDrawerListener(t);

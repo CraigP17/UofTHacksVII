@@ -34,19 +34,8 @@ public class RecommendedPage extends AppCompatActivity {
         setContentView(R.layout.activity_recommended_page);
 
         // Show entries
-        ArrayList<String[]> resultList = new ArrayList<String[]>();
-        InputStream dataStream = getResources().openRawResource(R.raw.recipe_data);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(dataStream));
-        try {
-            String csvLine;
-            while ((csvLine = reader.readLine()) != null) {
-                String[] row = csvLine.split("\t");
-                resultList.add(row);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        //String[] data = {"Spaghetti", "Pizza", "Your Mom"}; //Fake test strings
+        FileManager fm = new FileManager(getApplicationContext());
+        ArrayList<Recipe> resultList = fm.getRecipes();
         addEntry(resultList);
         // Make Navigation View
         dl = (DrawerLayout)findViewById(R.id.activity_recommended_page);
@@ -107,24 +96,22 @@ public class RecommendedPage extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void addEntry(ArrayList<String[]> entries) {
-        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.scrollWindow);
+    public void addEntry(ArrayList<Recipe> entries) {
+        final LinearLayout linearLayout = (LinearLayout) findViewById(R.id.scrollWindow);
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent recipeIntent = new Intent(RecommendedPage.this, RecipeActivity.class);
+
                 startActivity(recipeIntent);
             }
         });
 
         for(int i = 0; i < entries.size(); i++) {
-            if(entries.get(i).length > 0) {
-                View entry = getLayoutInflater().inflate(R.layout.entry, null);
-                TextView textView = (TextView) entry.findViewById(R.id.textView4);
-                textView.setText(entries.get(i)[0]);
-                linearLayout.addView(entry);
-            }
-
+            View entry = getLayoutInflater().inflate(R.layout.entry, null);
+            TextView textView = (TextView) entry.findViewById(R.id.textView4);
+            textView.setText(entries.get(i).getName());
+            linearLayout.addView(entry);
         }
     }
 }
