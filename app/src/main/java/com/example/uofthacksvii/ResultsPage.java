@@ -20,7 +20,8 @@ public class ResultsPage extends AppCompatActivity {
     private NavigationView nv;
 
     // Instead of FileManager for getting query results
-    // FileManager file = new FileManager(this);
+    FileManager file = new FileManager(this);
+    ArrayList<Recipe> allRecipe = file.getRecipes();
 
     // Variables for Query Searches
     private String type;

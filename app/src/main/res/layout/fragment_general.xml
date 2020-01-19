@@ -18,13 +18,13 @@
         android:textSize="36sp" />
 
     <SearchView
-        android:layout_width="302dp"
-        android:layout_height="106dp"
+        android:layout_width="307dp"
+        android:layout_height="83dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="112dp"
-        android:layout_marginEnd="55dp"
+        android:layout_marginEnd="50dp"
         android:iconifiedByDefault="false"
         android:queryHint="@string/findRecipe" />
 
@@ -34,8 +34,8 @@
         android:layout_height="79dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="42dp"
-        android:layout_marginTop="280dp"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="315dp"
         android:background="@android:color/transparent"
         app:srcCompat="@drawable/salad" />
 
@@ -44,8 +44,8 @@
         android:layout_width="71dp"
         android:layout_height="52dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="295dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="331dp"
         android:background="@android:color/transparent"
         app:srcCompat="@drawable/taco" />
 
@@ -55,8 +55,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="300dp"
-        android:layout_marginEnd="52dp"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="336dp"
+        android:layout_marginEnd="53dp"
         android:background="@android:color/transparent"
         app:srcCompat="@drawable/burger" />
 
@@ -65,12 +66,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="167dp"
-        android:layout_marginEnd="170dp"
-        android:layout_marginBottom="240dp"
+        android:layout_marginStart="169dp"
+        android:layout_marginTop="442dp"
+        android:layout_marginEnd="167dp"
         android:background="@android:color/transparent"
         app:srcCompat="@drawable/ic_pasta" />
 
@@ -79,8 +80,11 @@
         android:layout_width="74dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="47dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="44dp"
+        android:layout_marginEnd="293dp"
+        android:layout_marginBottom="312dp"
         android:text="Salad"
         android:textAlignment="center" />
 
@@ -91,8 +95,8 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="138dp"
-        android:layout_marginTop="243dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="288dp"
         android:text="Quick Select:"
         android:textAlignment="center"
         android:textColor="@android:color/black"
@@ -102,7 +106,9 @@
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="312dp"
         android:text="Tacos"
         android:textAlignment="center" />
 
@@ -111,8 +117,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginEnd="52dp"
+        android:layout_marginBottom="310dp"
         android:text="Burgers"
         android:textAlignment="center" />
 
@@ -123,9 +130,18 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="177dp"
-        android:layout_marginBottom="215dp"
+        android:layout_marginStart="181dp"
+        android:layout_marginBottom="203dp"
         android:text="Noodles"
         android:textAlignment="center" />
+
+    <ListView
+        android:layout_width="304dp"
+        android:layout_height="174dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="54dp"
+        android:layout_marginTop="196dp" />
 
 </RelativeLayout>
