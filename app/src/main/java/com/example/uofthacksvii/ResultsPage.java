@@ -158,7 +158,7 @@ public class ResultsPage extends AppCompatActivity {
         int count = recipes.size();
         String[] times = new String[count];
         for (int i = 0; i < count; i++) {
-            times[i] = recipes.get(i).getName();
+            times[i] = "Under: " +  String.valueOf(recipes.get(i).getTime()) + " mins";
         }
         return times;
     }
