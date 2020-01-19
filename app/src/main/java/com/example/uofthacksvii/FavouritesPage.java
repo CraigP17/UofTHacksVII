@@ -3,9 +3,7 @@ package com.example.uofthacksvii;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -19,20 +17,18 @@ public class FavouritesPage extends AppCompatActivity {
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
     private NavigationView nv;
-    private Button addFavButton;
-    private TextView t1;
-    private TextView t2;
-    private TextView t3;
+    ListView lst;
+    String[] items = {"Pizza","Tacos", "Burritos", "Pasta", "Burger", "Salad", "Apple"};
+    String[] description = {"This is Pizza","This is Tacos","This is Burritos","This is Pasta",
+            "This is Burger","This is Salad", "This is Apple" };
+    Integer[] imgid = {R.drawable.ic_access_time_black_24dp,R.drawable.taco,
+            R.drawable.ic_access_time_black_24dp, R.drawable.ic_pasta,
+            R.drawable.burger, R.drawable.salad, R.drawable.ic_access_time_black_24dp };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favourites_page);
-
-        addListenerOnButton();
-        t1 = (TextView) findViewById(R.id.textView);
-        t2 = (TextView) findViewById(R.id.textView);
-        t3 = (TextView) findViewById(R.id.textView);
 
         dl = (DrawerLayout)findViewById(R.id.activity_favourites_page);
         t = new ActionBarDrawerToggle(this, dl,R.string.Open, R.string.Close);
@@ -80,18 +76,11 @@ public class FavouritesPage extends AppCompatActivity {
             }
         });
 
+        lst = (ListView) findViewById(R.id.listview);
+        customListview clv = new customListview(this,items,description,imgid);
+        lst.setAdapter(clv);
 
-    }
 
-    public void addListenerOnButton() {
-        addFavButton = (Button) findViewById(R.id.button);
-        addFavButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent myIntent = new Intent(FavouritesPage.this, RecipeSearch.class);
-                FavouritesPage.this.startActivity(myIntent);
-            }
-        });
     }
 
     @Override
