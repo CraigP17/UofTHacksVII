@@ -11,6 +11,7 @@ import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -28,6 +29,9 @@ public class RecipeActivity extends AppCompatActivity {
     private TextView title;
     private ImageView image;
     private RatingBar favoriteStar;
+    private FileManager fm;
+    private Recipe recipe;
+    private String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,9 +85,9 @@ public class RecipeActivity extends AppCompatActivity {
         });
         */
         Intent intent = getIntent();
-        String name = intent.getStringExtra("name");
-        FileManager fm = new FileManager(getApplicationContext());
-        Recipe recipe = fm.getRecipeByName(name);
+        name = intent.getStringExtra("name");
+        fm = new FileManager(getApplicationContext());
+        recipe = fm.getRecipeByName(name);
 
         instructions = (TextView) findViewById(R.id.instructions);
         instructions.setText(recipe.printInstructions());
@@ -101,6 +105,17 @@ public class RecipeActivity extends AppCompatActivity {
         image.setImageResource(resourceId);
 
         favoriteStar = (RatingBar) findViewById(R.id.ratingBar);
+        fm.incrementVisits(name);
+        favoriteStar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                if(rating == 0) {
+                    fm.removeFavourites(name);
+                } else if(rating == 1) {
+                    fm.addFavourite(name);
+                }
+            }
+        });
 
     }
 

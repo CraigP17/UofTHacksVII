@@ -89,10 +89,9 @@ public class RecommendedPage extends AppCompatActivity {
 
             }
         });
-
         lst = (ListView) findViewById(R.id.listview2);
-        customListview clv = new customListview(this,items,description,imgid);
-        lst.setAdapter(clv);
+        customListview clv2 = new customListview(this,items,description,imgid);
+        lst.setAdapter(clv2);
         lst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -102,6 +101,7 @@ public class RecommendedPage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
 
     }
