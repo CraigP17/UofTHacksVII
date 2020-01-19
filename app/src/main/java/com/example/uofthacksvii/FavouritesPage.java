@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.ArrayList;
 
 public class FavouritesPage extends AppCompatActivity {
 
@@ -101,5 +104,26 @@ public class FavouritesPage extends AppCompatActivity {
             return true;
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void addEntry(ArrayList<String[]> entries) {
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.scrollWindow);
+        linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent recipeIntent = new Intent(FavouritesPage.this, RecipeActivity.class);
+                startActivity(recipeIntent);
+            }
+        });
+
+        for(int i = 0; i < entries.size(); i++) {
+            if(entries.get(i).length > 0) {
+                View entry = getLayoutInflater().inflate(R.layout.entry, null);
+                TextView textView = (TextView) entry.findViewById(R.id.textView4);
+                textView.setText(entries.get(i)[0]);
+                linearLayout.addView(entry);
+            }
+
+        }
     }
 }

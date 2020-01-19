@@ -169,4 +169,24 @@ public class Recipe {
         }
     }
 
+    public String printIngredients() {
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < ingredients.length; i++) {
+            String bullet_point = String.format(" • %s\n", ingredients[i]);
+            sb.append(bullet_point);
+        }
+
+        return sb.toString();
+    }
+
+    public String printInstructions() {
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < instructions.length; i++) {
+            String bullet_point = String.format(" • %s\n", instructions[i]);
+            sb.append(bullet_point);
+        }
+
+        return sb.toString();
+    }
+
 }
