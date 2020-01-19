@@ -5,32 +5,40 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.lang.reflect.Field;
+
 public class RecipeActivity extends AppCompatActivity {
-    private DrawerLayout dl;
-    private ActionBarDrawerToggle t;
-    private NavigationView nv;
+    //private DrawerLayout dl;
+    //private ActionBarDrawerToggle t;
+    //private NavigationView nv;
     private TextView instructions;
     private TextView ingredients;
     private TextView title;
     private ImageView image;
     private RatingBar favoriteStar;
+    private FileManager fm;
+    private Recipe recipe;
+    private String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe);
 
-        dl = (DrawerLayout)findViewById(R.id.activity_recipe);
+        /*dl = (DrawerLayout)findViewById(R.id.activity_recipe);
         t = new ActionBarDrawerToggle(this, dl,R.string.Open, R.string.Close);
 
         dl.addDrawerListener(t);
@@ -75,11 +83,11 @@ public class RecipeActivity extends AppCompatActivity {
 
             }
         });
-
+        */
         Intent intent = getIntent();
-        String name = intent.getStringExtra("name");
-        FileManager fm = new FileManager(getApplicationContext());
-        Recipe recipe = fm.getRecipeByName(name);
+        name = intent.getStringExtra("name");
+        fm = new FileManager(getApplicationContext());
+        recipe = fm.getRecipeByName(name);
 
         instructions = (TextView) findViewById(R.id.instructions);
         instructions.setText(recipe.printInstructions());
@@ -91,20 +99,33 @@ public class RecipeActivity extends AppCompatActivity {
         title.setText(recipe.getName());
 
         image = (ImageView) findViewById(R.id.recipeImage);
-        /*int imageID = getResources().getIdentifier(recipe.getImage(), "drawable", getPackageName());
-        Drawable drawable = getResources().getDrawable(imageID, null);
-        image.setImageDrawable(drawable);*/
+        Resources resources = getResources();
+        String imageName = recipe.getImage();
+        final int resourceId = resources.getIdentifier(imageName, "drawable", getPackageName());
+        image.setImageResource(resourceId);
 
         favoriteStar = (RatingBar) findViewById(R.id.ratingBar);
+        fm.incrementVisits(name);
+        favoriteStar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                if(rating == 0) {
+                    fm.removeFavourites(name);
+                } else if(rating == 1) {
+                    fm.addFavourite(name);
+                }
+            }
+        });
 
     }
 
-    @Override
+    /*@Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if(t.onOptionsItemSelected(item))
             return true;
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
+
 }

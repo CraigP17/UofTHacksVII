@@ -1,8 +1,10 @@
 package com.example.uofthacksvii;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +18,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class FavouritesPage extends AppCompatActivity {
@@ -24,12 +27,9 @@ public class FavouritesPage extends AppCompatActivity {
     private ActionBarDrawerToggle t;
     private NavigationView nv;
     ListView lst;
-    String[] items = {"Pizza","Tacos", "Burritos", "Pasta", "Burger", "Salad", "Apple"};
-    String[] description = {"This is Pizza","This is Tacos","This is Burritos","This is Pasta",
-            "This is Burger","This is Salad", "This is Apple" };
-    Integer[] imgid = {R.drawable.ic_access_time_black_24dp,R.drawable.taco,
-            R.drawable.ic_access_time_black_24dp, R.drawable.ic_pasta,
-            R.drawable.burger, R.drawable.salad, R.drawable.ic_access_time_black_24dp };
+    String[] items;
+    String[] description;
+    Integer[] imgid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,10 +82,35 @@ public class FavouritesPage extends AppCompatActivity {
             }
         });
 
+        FileManager fm = new FileManager(getApplicationContext());
+        ArrayList<String> favs = fm.Favourites();
+        items = new String[favs.size()];
+        description = new String[favs.size()];
+        imgid = new Integer[favs.size()];
+
+        for(int i = 0; i < favs.size(); i++) {
+            Recipe recipe = fm.getRecipeByName(favs.get(i));
+            items[i] = favs.get(i);
+            description[i] = recipe.getDescription();
+
+            Resources resources = getResources();
+            String imageName = recipe.getImage();
+            int resourceId = resources.getIdentifier(imageName, "drawable", getPackageName());
+            imgid[i] = resourceId;
+        }
+
         lst = (ListView) findViewById(R.id.listview);
         customListview clv = new customListview(this,items,description,imgid);
         lst.setAdapter(clv);
-
+        lst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String name = parent.getItemAtPosition(position).toString();
+                Intent intent = new Intent(FavouritesPage.this, RecipeActivity.class);
+                intent.putExtra("name",name);
+                startActivity(intent);
+            }
+        });
 
     }
 
