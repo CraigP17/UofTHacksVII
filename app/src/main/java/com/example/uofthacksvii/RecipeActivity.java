@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
@@ -21,6 +22,7 @@ public class RecipeActivity extends AppCompatActivity {
     private TextView ingredients;
     private TextView title;
     private ImageView image;
+    private RatingBar favoriteStar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,9 +79,11 @@ public class RecipeActivity extends AppCompatActivity {
 
 
         instructions = (TextView) findViewById(R.id.instructions);
+
         ingredients = (TextView) findViewById(R.id.ingredients);
         title = (TextView) findViewById(R.id.title);
         image = (ImageView) findViewById(R.id.recipeImage);
+        favoriteStar = (RatingBar) findViewById(R.id.ratingBar);
 
     }
 }

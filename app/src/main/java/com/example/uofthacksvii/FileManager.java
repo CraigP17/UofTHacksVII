@@ -13,6 +13,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class FileManager {
+    public ArrayList<Recipe> getRecipes() {
+        return recipes;
+    }
+
     private ArrayList<Recipe> recipes;
 
     public FileManager(Context context) {
@@ -41,33 +45,33 @@ public class FileManager {
         return resultList;
     }
 
-    public ArrayList<Recipe> searchByTimeAvailable(int time) {
+    public ArrayList<Recipe> searchByTimeAvailable(int time, ArrayList<Recipe> recipeList) {
         ArrayList<Recipe> results = new ArrayList<Recipe>();
-        for(int i = 0; i < recipes.size(); i++) {
-            if(recipes.get(i).getTime() <= time) {
-                results.add(recipes.get(i));
+        for(int i = 0; i < recipeList.size(); i++) {
+            if(recipeList.get(i).getTime() <= time) {
+                results.add(recipeList.get(i));
             }
         }
 
         return results;
     }
 
-    public ArrayList<Recipe> searchByCuisine(String cuisine) {
+    public ArrayList<Recipe> searchByCuisine(String cuisine, ArrayList<Recipe> recipeList) {
         ArrayList<Recipe> results = new ArrayList<Recipe>();
-        for(int i = 0; i < recipes.size(); i++) {
-            if(recipes.get(i).getCuisine_type().equals(cuisine)) {
-                results.add(recipes.get(i));
+        for(int i = 0; i < recipeList.size(); i++) {
+            if(recipeList.get(i).getCuisine_type().equals(cuisine)) {
+                results.add(recipeList.get(i));
             }
         }
         return results;
     }
 
-    public ArrayList<Recipe> searchByMealType(int type) {
+    public ArrayList<Recipe> searchByMealType(int type, ArrayList<Recipe> recipeList) {
         ArrayList<Recipe> results = new ArrayList<Recipe>();
-        for(int i = 0; i < recipes.size(); i++) {
+        for(int i = 0; i < recipeList.size(); i++) {
             for(int j = 0; j < 3; j++) {
-                if(j == type && recipes.get(i).getMeal_type()[j] == 1) {
-                    results.add(recipes.get(i));
+                if(j == type && recipeList.get(i).getMeal_type()[j] == 1) {
+                    results.add(recipeList.get(i));
                 }
             }
         }

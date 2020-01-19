@@ -105,25 +105,4 @@ public class FavouritesPage extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    public void addEntry(ArrayList<String[]> entries) {
-        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.scrollWindow);
-        linearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent recipeIntent = new Intent(FavouritesPage.this, RecipeActivity.class);
-                startActivity(recipeIntent);
-            }
-        });
-
-        for(int i = 0; i < entries.size(); i++) {
-            if(entries.get(i).length > 0) {
-                View entry = getLayoutInflater().inflate(R.layout.entry, null);
-                TextView textView = (TextView) entry.findViewById(R.id.textView4);
-                textView.setText(entries.get(i)[0]);
-                linearLayout.addView(entry);
-            }
-
-        }
-    }
 }
