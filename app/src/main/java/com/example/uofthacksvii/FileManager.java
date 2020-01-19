@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -83,6 +84,10 @@ public class FileManager {
 
         return results;
     }
+
+    /**Adds a recipe to the users favourite list
+     * @param recipe
+     */
     //name|time|calories|# of servings| name of drawable | carbohydrates | fats | proteins |
     // list of ingredients | directions | description| link to web| type of cuisine|
     // list of meal type (bkl/ln/dn)
@@ -105,14 +110,14 @@ public class FileManager {
                     temp[2] = String.valueOf(Integer.parseInt(temp[2]) + 1);
                 }
 
-                writeData.append(temp.toString()).append("\n");
+                writeData.append(getHelp(temp)).append("\n");
                 //create a user with the information found in the file
 
             }
             saveFavourites(writeData.toString());
-            System.out.println(writeData);
+            System.out.println(writeData.toString());
 
-        } catch (ArrayIndexOutOfBoundsException e) {
+        } catch (NullPointerException e) {
             //Catch placed in case the file does not exist and needs to be written
             System.out.println("Gotta write the file...Done");
             writeFavourites(); //EVENTUALLY this write method will initialize 3 empty users
@@ -130,18 +135,18 @@ public class FileManager {
                     temp[2] = String.valueOf(Integer.parseInt(temp[2]) + 1);
                 }
 
-                writeData.append(temp.toString()).append("\n");
+                writeData.append(getHelp(temp)).append("\n");
 
             }
             saveFavourites(writeData.toString());
-            System.out.println(writeData);
+            System.out.println(writeData.toString());
         }
     }
 
     private void saveFavourites(String writeData){
         try {
             OutputStreamWriter outStreamWriter = new OutputStreamWriter(activity.openFileOutput(
-                    "gameboi.txt", MainActivity.MODE_PRIVATE));
+                    "favourites.txt", MainActivity.MODE_PRIVATE));
 
             outStreamWriter.write(writeData);
             outStreamWriter.close();
@@ -193,6 +198,7 @@ public class FileManager {
                 }
                 inputStream.close();
                 usersStr = stringBuilder.toString();
+                return usersStr;
             }
 
         } catch (FileNotFoundException e) {
@@ -200,9 +206,12 @@ public class FileManager {
         } catch (IOException e) {
             Log.e(TAG, "Error Reading. What happened: " + e.toString());
         }
-        return usersStr;
+        return null;
     }
 
+    /**Removes the specified recipe from favourites and increments visits to recipe
+     * @param recipe The name of the dish
+     */
     public void removeFavourites(String recipe){
         try {
             //Take the long string containing all users and split into an array list
@@ -219,7 +228,7 @@ public class FileManager {
                     temp[2] = String.valueOf(Integer.parseInt(temp[2]) + 1);
                 }
 
-                writeData.append(temp.toString()).append("\n");
+                writeData.append(getHelp(temp)).append("\n");
                 //create a user with the information found in the file
 
             }
@@ -244,12 +253,149 @@ public class FileManager {
                     temp[2] = String.valueOf(Integer.parseInt(temp[2]) + 1);
                 }
 
-                writeData.append(temp.toString()).append("\n");
+                writeData.append(getHelp(temp)).append("\n");
 
             }
             saveFavourites(writeData.toString());
             System.out.println(writeData);
         }
+    }
+
+    /**
+     * @param recipe Name of dish
+     * @return String representation of array
+     */
+    private String getHelp(String[] recipe){
+        String temp = "";
+        for(String s: recipe){
+            temp = temp + s + ",";
+        }
+        return temp;
+    }
+
+    /**This method will increase the number of visits to a recipe. Should only be called if a recipe
+     * is not added to favourites
+     * @param recipe The name of the recipe chosen
+     */
+    public void incrementVisits(String recipe){
+        try {
+            //name of recipe|isFavourited|visits|time|calories|carbohydrate|fats|proteins|servings
+            String[] multiLine = this.read().split(System.getProperty("line.separator"));
+
+            StringBuilder writeData = new StringBuilder();
+
+            for (String u : multiLine) {
+                //System.out.println("Found the users(getUsers)");
+                String[] temp = u.split(",");
+                if (temp[0].equals(recipe)) {
+                    temp[2] = String.valueOf(Integer.parseInt(temp[2]) + 1);
+                }
+
+                writeData.append(getHelp(temp)).append("\n");
+                //create a user with the information found in the file
+
+            }
+            saveFavourites(writeData.toString());
+            System.out.println(writeData);
+
+        } catch (ArrayIndexOutOfBoundsException e) {
+            //Catch placed in case the file does not exist and needs to be written
+            System.out.println("Gotta write the file...Done");
+            writeFavourites(); //EVENTUALLY this write method will initialize 3 empty users
+            //name of recipe|isFavourited|visits|time|calories|carbohydrate|fats|proteins|servings
+
+            String[] multiLine = this.read().split(System.getProperty("line.separator"));
+
+            StringBuilder writeData = new StringBuilder();
+
+            for (String u : multiLine) {
+                //System.out.println("Found the users(getUsers)");
+                String[] temp = u.split(",");
+                if (temp[0].equals(recipe)) {
+                    temp[2] = String.valueOf(Integer.parseInt(temp[2]) + 1);
+                }
+
+                writeData.append(getHelp(temp)).append("\n");
+
+            }
+            saveFavourites(writeData.toString());
+            System.out.println(writeData);
+        }
+    }
+
+    /**Boolean which describes whether or not a recipe is a favourite
+     * @param recipe the name of the dish
+     * @return boolean representing if recipe is a favourite
+     */
+    public boolean isFavourite(String recipe) {
+        try {
+            //name of recipe|isFavourited|visits|time|calories|carbohydrate|fats|proteins|servings
+            String[] multiLine = this.read().split(System.getProperty("line.separator"));
+
+            for (String u : multiLine) {
+                //System.out.println("Found the users(getUsers)");
+                String[] temp = u.split(",");
+                //If recipe that we are looking for and is a favourite then return true
+                if (temp[0].equals(recipe) && Integer.valueOf(temp[1]) == 1) {
+                    return true;
+                }
+
+            }
+
+        } catch (ArrayIndexOutOfBoundsException e) {
+            writeFavourites(); //EVENTUALLY this write method will initialize 3 empty users
+            //name of recipe|isFavourited|visits|time|calories|carbohydrate|fats|proteins|servings
+
+            String[] multiLine = this.read().split(System.getProperty("line.separator"));
+
+            for (String u : multiLine) {
+                //System.out.println("Found the users(getUsers)");
+                String[] temp = u.split(",");
+                //If recipe that we are looking for and is a favourite then return true
+                if (temp[0].equals(recipe) && Integer.valueOf(temp[1]) == 1) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public ArrayList Favourites() {
+        try {
+            //name of recipe|isFavourited|visits|time|calories|carbohydrate|fats|proteins|servings
+            String[] multiLine = this.read().split(System.getProperty("line.separator"));
+
+            ArrayList<String> recipes = new ArrayList<>();
+
+            for (String u : multiLine) {
+                //System.out.println("Found the users(getUsers)");
+                String[] temp = u.split(",");
+                //If recipe that we are looking for and is a favourite then return true
+                if (Integer.valueOf(temp[2]) >= 2) {
+                    recipes.add(temp[0]);
+                }
+
+            }
+            return recipes;
+
+        } catch (ArrayIndexOutOfBoundsException e) {
+            writeFavourites(); //EVENTUALLY this write method will initialize 3 empty users
+            //name of recipe|isFavourited|visits|time|calories|carbohydrate|fats|proteins|servings
+
+            String[] multiLine = this.read().split(System.getProperty("line.separator"));
+            ArrayList<String> recipes = new ArrayList<>();
+
+            for (String u : multiLine) {
+                //System.out.println("Found the users(getUsers)");
+                String[] temp = u.split(",");
+                //If recipe that we are looking for and is a favourite then return true
+                if (Integer.valueOf(temp[2]) >= 2) {
+                    recipes.add(temp[0]);
+                }
+            }
+            return recipes;
+        }
+
     }
 
 }
