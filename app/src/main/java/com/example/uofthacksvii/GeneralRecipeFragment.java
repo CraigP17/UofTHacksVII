@@ -20,18 +20,8 @@ import java.util.List;
 
 public class GeneralRecipeFragment extends Fragment {
 
-    SearchView recipeFind;
-    ListView recipes;
-    ArrayList<String> list;
-    ArrayAdapter<String> adapter;
-    customListview customLV;
-
-    private ImageButton salad;
-    private ImageButton tacos;
-    private ImageButton burger;
-    private ImageButton noodles;
-
-    public String searchFood;
+    SearchView mySearchView;
+    ListView myList;
 
     @Nullable
     @Override
@@ -39,81 +29,60 @@ public class GeneralRecipeFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_general,container,false);
 
-        String[] list = {"Pasta", "Noodles", "Tacos", "Salad"};
-        Integer[] imgid = {R.drawable.salad, R.drawable.taco, R.drawable.burger, R.drawable.ic_pasta };
+        FileManager f = new FileManager(getActivity());
 
-        //adapter = new ArrayAdapter<>(this,android.R.layout.simple_expandable_list_item_1,list);
-        recipeFind = (SearchView) v.findViewById(R.id.searcher);
-        recipes = (ListView) v.findViewById(R.id.lister);
-        customLV = new customListview(getActivity(), list, list, imgid);
-        recipes.setAdapter(customLV);
+        ArrayList<Recipe> recipes = f.getRecipes();
 
-        recipes.setTextFilterEnabled(true);
+        mySearchView = (SearchView) v.findViewById(R.id.searchView);
+        myList = (ListView) v.findViewById(R.id.mylist);
 
-        recipeFind.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        ArrayList<String> list = new ArrayList<>();
+        list = collectNames(recipes);
+
+
+
+
+        final ArrayAdapter adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1,list);
+
+        myList.setAdapter(adapter);
+
+        mySearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                //Temporary
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String s) {
 
-                customLV.getFilter().filter(s);
-                recipes.setTextFilterEnabled(true);
+                adapter.getFilter().filter(s);
                 return false;
             }
         });
 
-        recipes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        myList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                String service = (String) recipes.getItemAtPosition(position);
-
-                Intent intent = new Intent(getActivity().getBaseContext(), ResultsPage.class);
-                intent.putExtra("type", "general");
-                intent.putExtra("service",service);
-                startActivity(intent);
-            }
-        });
-
-        salad = v.findViewById(R.id.salad);
-        salad.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                searchFood = "salad";
-            }
-        });
-
-        tacos = v.findViewById(R.id.tacos);
-        tacos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                searchFood = "tacos";
+                String service = (String) adapterView.getItemAtPosition(i);
 
             }
         });
 
-        burger = v.findViewById(R.id.burger);
-        burger.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                searchFood = "burger";
 
-            }
-        });
 
-        noodles = v.findViewById(R.id.noodles);
-        noodles.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                searchFood = "noodles";
 
-            }
-        });
 
         return v;
+    }
+
+    public ArrayList<String> collectNames(ArrayList<Recipe> all){
+
+        ArrayList<String> output = new ArrayList<>();
+
+        for(Recipe r: all){
+            output.add(r.getName());
+        }
+        return output;
     }
 }
