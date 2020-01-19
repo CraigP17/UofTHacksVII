@@ -108,8 +108,8 @@
 
         <Button
             android:id="@+id/timeFindRecipe"
-            android:layout_width="360dp"
-            android:layout_height="76dp"
+            android:layout_width="357dp"
+            android:layout_height="88dp"
             android:layout_marginTop="2dp"
             android:fontFamily="@font/bangers"
             android:text="@string/findRecipe"
