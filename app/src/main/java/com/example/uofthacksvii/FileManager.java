@@ -373,7 +373,14 @@ public class FileManager {
     public ArrayList Favourites() {
         try {
             //name of recipe|isFavourited|visits|time|calories|carbohydrate|fats|proteins|servings
-            String[] multiLine = this.read().split(System.getProperty("line.separator"));
+            String line = this.read();
+
+            if(line == null){
+                ArrayList<String> blank = new ArrayList<>();
+                return blank;
+            }
+
+            String[] multiLine = line.split(System.getProperty("line.separator"));
 
             ArrayList<String> recipes = new ArrayList<>();
 
