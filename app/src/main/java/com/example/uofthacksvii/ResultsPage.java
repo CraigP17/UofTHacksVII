@@ -9,10 +9,15 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ResultsPage extends AppCompatActivity {
 
@@ -21,6 +26,8 @@ public class ResultsPage extends AppCompatActivity {
     private NavigationView nv;
 
     ArrayList<Recipe> allRecipe;
+    ListView lst;
+    TextView searched;
 
     // Variables for Query Searches
     private String type;
@@ -31,6 +38,14 @@ public class ResultsPage extends AppCompatActivity {
     private String search;
 
     private String macros;
+
+    private String[] names;
+    private String[] times;
+    private Integer[] images;
+    private Integer[] imagery = {R.drawable.ic_stars_24px,R.drawable.ic_stars_24px,
+            R.drawable.ic_stars_24px,R.drawable.ic_stars_24px,R.drawable.ic_stars_24px,
+            R.drawable.ic_stars_24px,R.drawable.ic_stars_24px,R.drawable.ic_stars_24px,
+            R.drawable.ic_stars_24px,R.drawable.ic_stars_24px};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,18 +63,22 @@ public class ResultsPage extends AppCompatActivity {
                 timeOfDay = intent.getStringExtra("dayTime");
                 minutes = Integer.parseInt(intent.getStringExtra("minutes"));
                 cuisineType = intent.getStringExtra("choice");
-
+                allRecipe = file.searchByTimeAvailable(minutes, allRecipe);
+                if (!cuisineType.equals("ANYTHING")) {
+                    allRecipe = file.searchByCuisine(cuisineType.toLowerCase(), allRecipe);
+                }
                 break;
             case "general":
                 search = getIntent().getStringExtra("service");
-                System.out.println("OYOYOYOYOYOYOYOYOYOYOYOYOYOYOYOYOOYOYOYOYOY");
                 System.out.println(search);
                 break;
             case "nutrition":
                 //TODO
                 break;
         }
-
+        names = getTitles(allRecipe);
+        times = getTimes(allRecipe);
+        images = getImages(allRecipe);
 
         dl = (DrawerLayout)findViewById(R.id.activity_results_page);
         t = new ActionBarDrawerToggle(this, dl,R.string.Open, R.string.Close);
@@ -104,6 +123,53 @@ public class ResultsPage extends AppCompatActivity {
             }
         });
 
+        lst = (ListView) findViewById(R.id.resultList);
+        customListview clv = new customListview(this,names,times,imagery);
+        lst.setAdapter(clv);
+        lst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String name = parent.getItemAtPosition(position).toString();
+                Intent intent = new Intent(ResultsPage.this, RecipeActivity.class);
+                System.out.println(name);
+                intent.putExtra("name",name);
+                startActivity(intent);
+            }
+        });
+
+        searched = (TextView) findViewById(R.id.searches);
+        String txt = cuisineType + " under " + minutes + "mins";
+        searched.setText(txt);
+        System.out.println(search);
+
+    }
+
+
+    public String[] getTitles(ArrayList<Recipe> recipes) {
+        int count = recipes.size();
+        String[] names = new String[count];
+        for (int i = 0; i < count; i++) {
+            names[i] = recipes.get(i).getName();
+        }
+        return names;
+    }
+
+    public String[] getTimes(ArrayList<Recipe> recipes) {
+        int count = recipes.size();
+        String[] times = new String[count];
+        for (int i = 0; i < count; i++) {
+            times[i] = recipes.get(i).getName();
+        }
+        return times;
+    }
+
+    public Integer[] getImages(ArrayList<Recipe> recipes) {
+        int count = recipes.size();
+        Integer[] images = new Integer[count];
+        for (int i = 0; i < count; i++) {
+            images[i] = getResources().getIdentifier(recipes.get(i).getImage(), "drawable", getPackageName());
+        }
+        return images;
     }
 
     @Override
