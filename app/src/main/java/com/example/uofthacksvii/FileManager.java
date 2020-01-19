@@ -117,7 +117,7 @@ public class FileManager {
                 String[] temp = u.split(",");
                 if (temp[0].equals(recipe)) {
                     temp[1] = String.valueOf(1);
-                    temp[2] = String.valueOf(Integer.parseInt(temp[2]) + 1);
+                    //temp[2] = String.valueOf(Integer.parseInt(temp[2]) + 1);
                 }
 
                 writeData.append(getHelp(temp)).append("\n");
@@ -142,7 +142,7 @@ public class FileManager {
                 String[] temp = u.split(",");
                 if (temp[0].equals(recipe)) {
                     temp[1] = String.valueOf(1);
-                    temp[2] = String.valueOf(Integer.parseInt(temp[2]) + 1);
+                    //temp[2] = String.valueOf(Integer.parseInt(temp[2]) + 1);
                 }
 
                 writeData.append(getHelp(temp)).append("\n");
@@ -235,7 +235,7 @@ public class FileManager {
                 String[] temp = u.split(",");
                 if (temp[0].equals(recipe)) {
                     temp[1] = String.valueOf(0);
-                    temp[2] = String.valueOf(Integer.parseInt(temp[2]) + 1);
+                    //temp[2] = String.valueOf(Integer.parseInt(temp[2]) + 1);
                 }
 
                 writeData.append(getHelp(temp)).append("\n");
@@ -260,7 +260,7 @@ public class FileManager {
                 String[] temp = u.split(",");
                 if (temp[0].equals(recipe)) {
                     temp[1] = String.valueOf(0);
-                    temp[2] = String.valueOf(Integer.parseInt(temp[2]) + 1);
+                    //temp[2] = String.valueOf(Integer.parseInt(temp[2]) + 1);
                 }
 
                 writeData.append(getHelp(temp)).append("\n");

@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.google.android.material.navigation.NavigationView;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 
 public class RecipeActivity extends AppCompatActivity {
     //private DrawerLayout dl;
@@ -105,6 +106,15 @@ public class RecipeActivity extends AppCompatActivity {
         image.setImageResource(resourceId);
 
         favoriteStar = (RatingBar) findViewById(R.id.ratingBar);
+        ArrayList<String> favs = fm.Favourites();
+
+        for(int i = 0; i < favs.size(); i++) {
+            if(name.equals(favs.get(i))) {
+                favoriteStar.setRating(1);
+            }
+        }
+
+
         fm.incrementVisits(name);
         favoriteStar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
