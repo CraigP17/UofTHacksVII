@@ -31,14 +31,13 @@ public class FileManager {
 
     public ArrayList<Recipe> parseData(Context context) {
         ArrayList<Recipe> resultList = new ArrayList<Recipe>();
-        File file = new File("recipe_data.txt");
 
+        InputStream dataStream = context.getResources().openRawResource(R.raw.recipe_data);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(dataStream));
+        String readLine;
         try {
-            FileInputStream dataStream = context.openFileInput("recipe_data.txt");
-            BufferedReader reader = new BufferedReader(new InputStreamReader(dataStream));
-            String csvLine;
-            while ((csvLine = reader.readLine()) != null) {
-                String[] row = csvLine.split("\t");
+            while ((readLine = reader.readLine()) != null) {
+                String[] row = readLine.split("\t");
                 if(row.length == 14) {
                     Recipe recipe = new Recipe(row);
                     resultList.add(recipe);
