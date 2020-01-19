@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -24,8 +25,6 @@ public class RecommendedPage extends AppCompatActivity {
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
     private NavigationView nv;
-    private LinearLayout linearLayout;
-    private TextView textView;
 
     ListView lst;
     String[] items = {"Homemade Mac and Cheese", "Mongolian Beef", "Caprese Salad", "Chow Fun (Fan)"};
@@ -99,15 +98,13 @@ public class RecommendedPage extends AppCompatActivity {
         lst = (ListView) findViewById(R.id.listview2);
         customListview clv = new customListview(this,items,description,imgid);
         lst.setAdapter(clv);
-        lst.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        lst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Log.i("Tag","HI");
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String name = parent.getItemAtPosition(position).toString();
+                Intent intent = new Intent(RecommendedPage.this, RecipeActivity.class);
+                intent.putExtra("name",name);
+                startActivity(intent);
             }
         });
 
