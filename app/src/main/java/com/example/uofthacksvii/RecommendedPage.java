@@ -31,8 +31,8 @@ public class RecommendedPage extends AppCompatActivity {
     String[] description = {"This is a nice rich mac and cheese. Serve with a salad for a great meatless dinner. " +
             "Hope you enjoy it.","The best healthy and homemade recipe that is better than " +
             "Chinese takeout and PF Chang's. Make this super easy recipe at home today!",
-            "No dish can taste as good with fewer ingredients. Try this quick ans simple recipe."
-            ,"Definitely a five star recipe. It's quick, easy, and nutritious"};
+            "No dish can taste as good with fewer ingredients. Try this quick and simple recipe."
+            ,"Definitely a five star recipe. It's quick, easy, and nutritious."};
     Integer[] imgid = {R.drawable.close_up_photography_of_baked_mac_806357,
             R.drawable.mongolian_beef_thumb_323x323,
             R.drawable.caprese, R.drawable.cooked_rice_on_black_ceramic_plate_723198};
