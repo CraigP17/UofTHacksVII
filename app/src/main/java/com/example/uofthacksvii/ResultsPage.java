@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -19,9 +20,7 @@ public class ResultsPage extends AppCompatActivity {
     private ActionBarDrawerToggle t;
     private NavigationView nv;
 
-    // Instead of FileManager for getting query results
-    FileManager file = new FileManager(this);
-    ArrayList<Recipe> allRecipe = file.getRecipes();
+    ArrayList<Recipe> allRecipe;
 
     // Variables for Query Searches
     private String type;
@@ -38,6 +37,10 @@ public class ResultsPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results_page);
 
+        // Instead of FileManager for getting query results
+        FileManager file = new FileManager(getApplicationContext());
+        allRecipe = file.getRecipes();
+
         Intent intent = getIntent();
         type = intent.getStringExtra("type");
         switch (type) {
@@ -48,7 +51,9 @@ public class ResultsPage extends AppCompatActivity {
 
                 break;
             case "general":
-                search = getIntent().getParcelableExtra("search");
+                search = getIntent().getStringExtra("service");
+                System.out.println("OYOYOYOYOYOYOYOYOYOYOYOYOYOYOYOYOOYOYOYOYOY");
+                System.out.println(search);
                 break;
             case "nutrition":
                 //TODO

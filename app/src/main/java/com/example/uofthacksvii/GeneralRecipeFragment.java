@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GeneralRecipeFragment extends Fragment {
 
@@ -23,6 +24,7 @@ public class GeneralRecipeFragment extends Fragment {
     ListView recipes;
     ArrayList<String> list;
     ArrayAdapter<String> adapter;
+    customListview customLV;
 
     private ImageButton salad;
     private ImageButton tacos;
@@ -37,15 +39,16 @@ public class GeneralRecipeFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_general,container,false);
 
-        list = new ArrayList<String>();
-        list.add("Pasta");
-        list.add("Noodles");
-        list.add("Tacos");
-        list.add("Salad");
+        String[] list = {"Pasta", "Noodles", "Tacos", "Salad"};
+        Integer[] imgid = {R.drawable.salad, R.drawable.taco, R.drawable.burger, R.drawable.ic_pasta };
 
         //adapter = new ArrayAdapter<>(this,android.R.layout.simple_expandable_list_item_1,list);
-        adapter = new ArrayAdapter(getActivity().getBaseContext(), android.R.layout.simple_spinner_item, list);
-        recipes.setAdapter(adapter);
+        recipeFind = (SearchView) v.findViewById(R.id.searcher);
+        recipes = (ListView) v.findViewById(R.id.lister);
+        customLV = new customListview(getActivity(), list, list, imgid);
+        recipes.setAdapter(customLV);
+
+        recipes.setTextFilterEnabled(true);
 
         recipeFind.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -57,18 +60,20 @@ public class GeneralRecipeFragment extends Fragment {
             @Override
             public boolean onQueryTextChange(String s) {
 
-                adapter.getFilter().filter(s);
+                customLV.getFilter().filter(s);
+                recipes.setTextFilterEnabled(true);
                 return false;
             }
         });
 
         recipes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                String service = (String) adapterView.getItemAtPosition(i);
+                String service = (String) recipes.getItemAtPosition(position);
 
                 Intent intent = new Intent(getActivity().getBaseContext(), ResultsPage.class);
+                intent.putExtra("type", "general");
                 intent.putExtra("service",service);
                 startActivity(intent);
             }
