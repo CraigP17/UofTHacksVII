@@ -19,7 +19,7 @@ public class Recipe {
     private String[] ingredients;
     private String[] instructions;
     private String description;
-    private URL url;
+    private String url;
     private String cuisine_type;
     private int[] meal_type;
 
@@ -111,11 +111,11 @@ public class Recipe {
         this.description = description;
     }
 
-    public URL getUrl() {
+    public String getUrl() {
         return url;
     }
 
-    public void setUrl(URL url) {
+    public void setUrl(String url) {
         this.url = url;
     }
 
@@ -150,7 +150,7 @@ public class Recipe {
         this.ingredients = recipe[8].split(":");
         this.instructions = recipe[9].split(":");
         this.description = recipe[10];
-        this.url = new URL(recipe[11]);
+        this.url = recipe[11];
         this.cuisine_type = recipe[12];
 
         this.meal_type = new int[3];
@@ -158,15 +158,18 @@ public class Recipe {
         meal_type[1] = 0;
         meal_type[2] = 0;
         String[] meals = recipe[13].split(":");
-        if(meals[0] == "breakfast") {
-            meal_type[0] = 1;
+        for(int i = 0; i < meals.length; i++) {
+            if(meals[i].equals("breakfast")) {
+                meal_type[0] = 1;
+            }
+            if(meals[i].equals("lunch")) {
+                meal_type[1] = 1;
+            }
+            if(meals[i].equals("dinner")) {
+                meal_type[2] = 1;
+            }
         }
-        if(meals[1] == "lunch") {
-            meal_type[1] = 1;
-        }
-        if(meals[2] == "dinner") {
-            meal_type[2] = 1;
-        }
+
     }
 
     public String printIngredients() {
