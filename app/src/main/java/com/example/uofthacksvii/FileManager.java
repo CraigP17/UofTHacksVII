@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -83,6 +84,16 @@ public class FileManager {
 
         return results;
     }
+
+    public Recipe getRecipeByName(String name) {
+        for(int i = 0; i < recipes.size(); i++) {
+            if(recipes.get(i).getName().equals(name)) {
+                return recipes.get(i);
+            }
+        }
+        return null;
+    }
+
     //name|time|calories|# of servings| name of drawable | carbohydrates | fats | proteins |
     // list of ingredients | directions | description| link to web| type of cuisine|
     // list of meal type (bkl/ln/dn)

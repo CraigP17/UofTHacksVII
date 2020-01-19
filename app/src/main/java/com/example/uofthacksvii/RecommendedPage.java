@@ -27,6 +27,8 @@ public class RecommendedPage extends AppCompatActivity {
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
     private NavigationView nv;
+    private LinearLayout linearLayout;
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,20 +99,20 @@ public class RecommendedPage extends AppCompatActivity {
     }
 
     public void addEntry(ArrayList<Recipe> entries) {
-        final LinearLayout linearLayout = (LinearLayout) findViewById(R.id.scrollWindow);
-        linearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent recipeIntent = new Intent(RecommendedPage.this, RecipeActivity.class);
-
-                startActivity(recipeIntent);
-            }
-        });
+        linearLayout = (LinearLayout) findViewById(R.id.scrollWindow);
 
         for(int i = 0; i < entries.size(); i++) {
             View entry = getLayoutInflater().inflate(R.layout.entry, null);
-            TextView textView = (TextView) entry.findViewById(R.id.textView4);
+            textView = (TextView) entry.findViewById(R.id.textView4);
             textView.setText(entries.get(i).getName());
+            textView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent recipeIntent = new Intent(RecommendedPage.this, RecipeActivity.class);
+                    recipeIntent.putExtra("name",textView.getText().toString());
+                    startActivity(recipeIntent);
+                }
+            });
             linearLayout.addView(entry);
         }
     }
