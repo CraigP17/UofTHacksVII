@@ -7,21 +7,18 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class RecommendedPage extends AppCompatActivity {
     private DrawerLayout dl;
@@ -30,15 +27,28 @@ public class RecommendedPage extends AppCompatActivity {
     private LinearLayout linearLayout;
     private TextView textView;
 
+    ListView lst;
+    String[] items = {"Homemade Mac and Cheese", "Mongolian Beef", "Caprese Salad", "Chow Fun (Fan)"};
+    String[] description = {"This is a nice rich mac and cheese. Serve with a salad for a great meatless dinner. " +
+            "Hope you enjoy it.","The best healthy and homemade recipe that is better than " +
+            "Chinese takeout and PF Chang's. Make this super easy recipe at home today!",
+            "No dish can taste as good with fewer ingredients. Try this quick ans simple recipe."
+            ,"Definitely a five star recipe. It's quick, easy, and nutritious"};
+    Integer[] imgid = {R.drawable.close_up_photography_of_baked_mac_806357,
+            R.drawable.mongolian_beef_thumb_323x323,
+            R.drawable.caprese, R.drawable.cooked_rice_on_black_ceramic_plate_723198};
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommended_page);
 
         // Show entries
-        FileManager fm = new FileManager(getApplicationContext());
+        /* fm = new FileManager(getApplicationContext());
         ArrayList<Recipe> resultList = fm.getRecipes();
-        addEntry(resultList);
+        addEntry(resultList);*/
+
         // Make Navigation View
         dl = (DrawerLayout)findViewById(R.id.activity_recommended_page);
         t = new ActionBarDrawerToggle(this, dl,R.string.Open, R.string.Close);
@@ -86,6 +96,21 @@ public class RecommendedPage extends AppCompatActivity {
             }
         });
 
+        lst = (ListView) findViewById(R.id.listview2);
+        customListview clv = new customListview(this,items,description,imgid);
+        lst.setAdapter(clv);
+        lst.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Log.i("Tag","HI");
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
     }
 
@@ -98,7 +123,7 @@ public class RecommendedPage extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void addEntry(ArrayList<Recipe> entries) {
+    /*public void addEntry(ArrayList<Recipe> entries) {
         linearLayout = (LinearLayout) findViewById(R.id.scrollWindow);
 
         for(int i = 0; i < entries.size(); i++) {
@@ -115,5 +140,5 @@ public class RecommendedPage extends AppCompatActivity {
             });
             linearLayout.addView(entry);
         }
-    }
+    }*/
 }
