@@ -85,6 +85,16 @@ public class FileManager {
         return results;
     }
 
+    public Recipe getRecipeByName(String name) {
+        for(int i = 0; i < recipes.size(); i++) {
+            if(recipes.get(i).getName().equals(name)) {
+                return recipes.get(i);
+            }
+        }
+        return null;
+    }
+
+
     /**Adds a recipe to the users favourite list
      * @param recipe
      */
